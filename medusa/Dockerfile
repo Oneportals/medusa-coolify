@@ -35,7 +35,9 @@ WORKDIR /app/medusa
 RUN mkdir .medusa
 
 # COPY package*.json .yarnrc.yml yarn.lock ./ 
-
+COPY medusa-config.ts .
+COPY tsconfig.json .
+COPY package.json .
 # COPY medusa-config.ts .
 # COPY tsconfig.json .
 
