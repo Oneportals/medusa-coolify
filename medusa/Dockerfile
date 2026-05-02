@@ -35,9 +35,11 @@ WORKDIR /app/medusa
 RUN mkdir .medusa
 
 # COPY package*.json .yarnrc.yml yarn.lock ./ 
-COPY medusa-config.ts .
-COPY tsconfig.json .
-COPY package.json .
+
+#COPY medusa-config.ts .
+#COPY tsconfig.json .
+#COPY package.json .
+
 # COPY medusa-config.ts .
 # COPY tsconfig.json .
 
@@ -50,11 +52,12 @@ WORKDIR /app/medusa/.medusa/server
 RUN yarn install --production
 
 
-# RUN medusa migrations run 
-# COPY migrations.sh /app/medusa/.medusa/server/migrations.sh
-# RUN chmod +x /app/medusa/.medusa/server/migrations.sh
-# RUN /app/medusa/.medusa/server/migrations.sh
+RUN medusa migrations run 
+COPY migrations.sh /app/medusa/.medusa/server/migrations.sh
+RUN chmod +x /app/medusa/.medusa/server/migrations.sh
+RUN /app/medusa/.medusa/server/migrations.sh
 
-# RUN rm /app/medusa/.medusa/server/migrations.sh
+RUN rm /app/medusa/.medusa/server/migrations.sh
 
-CMD ["sh", "-c", "npx medusa db:migrate && yarn run start"]
+#CMD ["sh", "-c", "npx medusa db:migrate && yarn run start"]
+CMD ["yarn", "run", "start"]
