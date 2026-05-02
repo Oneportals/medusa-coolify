@@ -1,4 +1,4 @@
-FROM node:18 as builder
+FROM node:20 as builder
 
 WORKDIR /app/medusa
 
@@ -13,7 +13,7 @@ RUN yarn install --loglevel=error
 RUN yarn run build
 
 
-FROM node:18
+FROM node:20
 
 # Bug https://github.com/coollabsio/coolify/issues/1930
 ARG COOKIE_SECRET
