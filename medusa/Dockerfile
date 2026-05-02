@@ -10,7 +10,13 @@ RUN apt-get update && apt-get install -y python3 python3-pip python-is-python3
 
 ENV NODE_OPTIONS="--dns-result-order=ipv4first"
 
-RUN yarn install --frozen-lockfile --network-timeout 600000
+#RUN yarn install --frozen-lockfile --network-timeout 600000
+
+RUN yarn config set network-timeout 600000 -g \
+ && yarn config set enableIPv6 false \
+ && yarn config set registry https://registry.npmjs.org \
+ && yarn install --frozen-lockfile --network-timeout 600000 --mutex network \
+ || yarn install --network-timeout 600000 --mutex network
 
 RUN yarn run build
 
@@ -67,4 +73,5 @@ RUN yarn install --production --network-timeout 600000
 #CMD ["yarn", "run", "start"]
 #CMD ["yarn", "start"]
 #CMD ["npx", "medusa", "db:migrate"]
-CMD ["sh", "-c", "cd /app/medusa/.medusa/server && npx medusa db:migrate"]
+#CMD ["sh", "-c", "cd /app/medusa/.medusa/server && npx medusa db:migrate"]
+CMD ["sh", "-c", "cd /app/medusa/.medusa/server && npx medusa db:migrate && npx medusa start"]
