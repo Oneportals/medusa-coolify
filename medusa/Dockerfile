@@ -62,4 +62,5 @@ RUN yarn install --production
 #CMD ["sh", "-c", "npx medusa db:migrate && yarn run start"]
 #CMD ["yarn", "run", "start"]
 #CMD ["yarn", "start"]
-CMD ["npx", "medusa", "db:migrate"]
+#CMD ["npx", "medusa", "db:migrate"]
+CMD ["sh", "-c", "cd /app/medusa/.medusa/server && npx medusa db:migrate"]
