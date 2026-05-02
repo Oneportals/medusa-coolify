@@ -8,6 +8,8 @@ RUN rm -rf node_modules
 
 RUN apt-get update && apt-get install -y python3 python3-pip python-is-python3
 
+ENV NODE_OPTIONS="--dns-result-order=ipv4first"
+
 RUN yarn install --frozen-lockfile --network-timeout 600000
 
 RUN yarn run build
@@ -48,6 +50,8 @@ RUN apt-get update && apt-get install -y python3 python3-pip python-is-python3
 COPY --from=builder /app/medusa/.medusa ./.medusa
 
 WORKDIR /app/medusa/.medusa/server
+
+ENV NODE_OPTIONS="--dns-result-order=ipv4first"
 
 RUN yarn install --production --network-timeout 600000
 
