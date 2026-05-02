@@ -52,12 +52,13 @@ WORKDIR /app/medusa/.medusa/server
 RUN yarn install --production
 
 
-RUN medusa migrations run 
-COPY migrations.sh /app/medusa/.medusa/server/migrations.sh
-RUN chmod +x /app/medusa/.medusa/server/migrations.sh
-RUN /app/medusa/.medusa/server/migrations.sh
+#RUN medusa migrations run 
+#COPY migrations.sh /app/medusa/.medusa/server/migrations.sh
+#RUN chmod +x /app/medusa/.medusa/server/migrations.sh
+#RUN /app/medusa/.medusa/server/migrations.sh
 
-RUN rm /app/medusa/.medusa/server/migrations.sh
+#RUN rm /app/medusa/.medusa/server/migrations.sh
 
 #CMD ["sh", "-c", "npx medusa db:migrate && yarn run start"]
-CMD ["yarn", "run", "start"]
+#CMD ["yarn", "run", "start"]
+CMD ["yarn", "start"]
