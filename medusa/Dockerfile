@@ -8,7 +8,7 @@ RUN rm -rf node_modules
 
 RUN apt-get update && apt-get install -y python3 python3-pip python-is-python3
 
-RUN yarn install --loglevel=error
+RUN yarn install --frozen-lockfile --network-timeout 600000
 
 RUN yarn run build
 
@@ -49,7 +49,7 @@ COPY --from=builder /app/medusa/.medusa ./.medusa
 
 WORKDIR /app/medusa/.medusa/server
 
-RUN yarn install --production
+RUN yarn install --production --network-timeout 600000
 
 
 #RUN medusa migrations run 
