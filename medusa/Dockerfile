@@ -74,4 +74,4 @@ RUN yarn install --production --network-timeout 600000
 #CMD ["yarn", "start"]
 #CMD ["npx", "medusa", "db:migrate"]
 #CMD ["sh", "-c", "cd /app/medusa/.medusa/server && npx medusa db:migrate && npx medusa start"]
-CMD ["sh", "-c", "cd /app/medusa/.medusa/server && npx medusa db:migrate"]
+CMD ["sh", "-c", "cd /app/medusa/.medusa/server && npx medusa start"]
